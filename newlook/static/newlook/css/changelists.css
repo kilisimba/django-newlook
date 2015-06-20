@@ -1,0 +1,32 @@
+#changelist-form .actions span.all,
+#changelist-form .actions span.action-counter,
+#changelist-form .actions span.clear,
+#changelist-form .actions span.question {
+    font-size: 11px;
+    margin: 0 0.5em;
+    display: none;
+}
+
+.actions {
+    overflow: hidden;
+}
+
+.actions ul {
+    overflow: hidden;
+    padding: 0px;
+}
+
+.actions li {
+    float: left;
+    list-style-type: none;
+    padding: 0px 0;
+}
+
+form#changelist-form  #changelist {
+    top: 0px;
+}
+
+#changelist-form {
+    margin-top: 60px;
+}
+

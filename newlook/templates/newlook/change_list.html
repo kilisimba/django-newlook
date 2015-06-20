@@ -1,0 +1,70 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+{% load admin_list admin_urls %}
+{% load newlook_list %}
+
+
+{# Include navigation bar #}
+{# Include search form if any #}
+{% block nav-global %}{% include "newlook/nav_bar.html" %}{% newlook_search cl %}{% endblock %}
+
+{# Remove breadcrumbs #}
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    {% block object-tools-filters %}
+    {% endblock %}
+    {% if cl.formset.errors %}
+        <p class="errornote">
+        {% if cl.formset.total_error_count == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+        </p>
+        {{ cl.formset.non_form_errors }}
+    {% endif %}
+
+      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
+      {% if cl.formset %}
+        <div>{{ cl.formset.management_form }}</div>
+      {% endif %}
+
+        <ul class="object-tools">
+          {% block object-tools-items %}
+            {% if has_add_permission %}
+            <li>
+              {% url cl.opts|admin_urlname:'add' as add_url %}
+              {# Remove "Go" link #}
+              <a href="{% add_preserved_filters add_url is_popup to_field %}">
+                {# Replace 'Add' by 'New' #}
+                {% blocktrans with cl.opts.verbose_name as name %}New{% endblocktrans %}
+              </a>
+            </li>
+            {% endif %}
+          {% endblock %}
+        </ul>
+      
+    {# action moved before filters #}
+    {% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
+
+    {% block top_summary %}
+    {% endblock %}
+
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+      {% block filters %}
+        {% if cl.has_filters %}
+          <div id="changelist-filter">
+            <h2>{% trans 'Filter' %}</h2>
+            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block result_list %}
+          {% result_list cl %}
+      {% endblock %}
+      {% block pagination %}{% pagination cl %}{% endblock %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

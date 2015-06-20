@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{# Remove site header link from base.html #}
+{% block branding %}
+<h1 id="site-name">{{ site_header|default:_('Django administration') }}</h1>
+{% endblock %}
+
+{# Add custom base.css style #}
+{% block extrastyle %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "newlook/css/base.css" %}" />
+{% endblock %}
+
+{# Add navigation bar #}
+{% block nav-global %}{% include "newlook/nav_bar.html" %}{% endblock %}
+
+{# Remove breadcrumbs from base.html #}
+{% block breadcrumbs %}{% endblock %}

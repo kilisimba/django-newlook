@@ -1,0 +1,56 @@
+/*
+    DJANGO Admin styles
+*/
+
+#navigation_bar {
+    padding: 0px 0;
+    border: none;
+    clear: both;
+    float: left;
+}
+
+#navigation_bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#navigation_bar li {
+    float: left;
+    list-style-type: none;
+    padding: 0px 0;
+}
+
+#navigation_bar a:link, #navigation_bar a:visited {
+    display: block;
+    width: 120px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #417690;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#navigation_bar a:hover, #navigation_bar a:active {
+    background-color: #7CA0C7;
+}
+
+#search-form {
+    float: right;
+    margin-top: -4px;
+    margin-right: 4px;
+}
+
+.object-tools{
+    float: left;
+    margin-top: -3em;
+}
+
+.object-tools-filters {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}

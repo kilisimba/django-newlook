@@ -1,0 +1,13 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{# Include navigation bar #}
+{% block nav-global %}{% include "newlook/nav_bar.html" %}{% endblock %}
+
+{# Remove breadcrumbs #}
+{% block breadcrumbs %}{% endblock %}
+
+{# Remove history button #}
+{% block object-tools-items %}
+{% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+{% endblock %}

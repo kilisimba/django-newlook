@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+recursive-include newlook/static *
+recursive-include newlook/templates *
+recursive-include newlook/templatetags *
+recursive-include docs *
